@@ -36,6 +36,11 @@ public class FractalFX extends Application {
 		mainStage.setTitle("FractalFX");
 
 		BorderPane root = new BorderPane();
+//		Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+//		GraphicsContext gc = canvas.getGraphicsContext2D();
+//		PythagorasTree pt = new PythagorasTree();
+//		pt.drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+		
 		ImageView imgView = new ImageView();
 
 		JuliaFractal f = new JuliaFractal();

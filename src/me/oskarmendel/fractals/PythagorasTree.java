@@ -14,7 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class PythagorasTree {
 	
-	private static final int MAX_BRANCH = 10;
+	private static final int MAX_BRANCH = 14;
 	
 	public void drawTree(int width, int height,GraphicsContext gc) {
 		genTree(gc, (width/2)-50, height, ((width/2)-50)+100, height, 0, 0);

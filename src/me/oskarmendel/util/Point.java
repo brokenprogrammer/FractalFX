@@ -9,8 +9,8 @@ package me.oskarmendel.util;
  */
 public class Point {
 
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
 	/**
 	 * Constructs a new point at the specified coordinates.
@@ -18,7 +18,7 @@ public class Point {
 	 * @param x - X coordinate of the point.
 	 * @param y - Y coordinate of the point.
 	 */
-	public Point(int x, int y) {
+	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -31,7 +31,7 @@ public class Point {
 	 * 
 	 * @return Point in the middle of the two given points.
 	 */
-	public Point midPoint(Point p1, Point p2) {
+	public static Point midPoint(Point p1, Point p2) {
 		return new Point((p1.getX() + p2.getX())/2, (p1.getY() + p2.getY())/2);
 	}
 	
@@ -40,7 +40,7 @@ public class Point {
 	 * 
 	 * @return x coordinate of this point.
 	 */
-	public int getX() {
+	public double getX() {
 		return this.x;
 	}
 	
@@ -49,7 +49,7 @@ public class Point {
 	 * 
 	 * @return y coordinate of this point.
 	 */
-	public int getY() {
+	public double getY() {
 		return this.y;
 	}
 }

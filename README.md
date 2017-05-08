@@ -4,3 +4,4 @@ This project is a JavaFX project with the goal of being able to render a large s
 ### Currently implemented Fractals:
 1. [Julia Fractal](https://github.com/brokenprogrammer/FractalFX/blob/master/src/me/oskarmendel/fractals/JuliaFractal.java)
 2. [Pythagoras Tree](https://github.com/brokenprogrammer/FractalFX/blob/master/src/me/oskarmendel/fractals/PythagorasTree.java)
+3. [Sierpinski Triangle](https://github.com/brokenprogrammer/FractalFX/blob/master/src/me/oskarmendel/fractals/SierpinskiTriangle.java)

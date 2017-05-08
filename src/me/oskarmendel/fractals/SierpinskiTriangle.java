@@ -19,10 +19,11 @@ public class SierpinskiTriangle {
 	private static final int MAX_ITER = 8;
 
 	/**
+	 * Draws a Sierpinski triangle to the specified GraphicsContext.
 	 * 
-	 * @param width
-	 * @param height
-	 * @param gc
+	 * @param width - width of the container or canvas.
+	 * @param height - height of the container or canvas.
+	 * @param gc - GraphicsContext to use to draw with.
 	 */
 	public void drawTriangle(int width, int height, GraphicsContext gc) {
 
@@ -34,19 +35,23 @@ public class SierpinskiTriangle {
 	}
 
 	/**
+	 * Recursive method to generate the Sierpinski triangle. 
+	 * This method draw one triangle and recursively calls itself three times to draw a 
+	 * new triangle on each side of the drawn triangle.
 	 * 
-	 * @param gc
-	 * @param p1
-	 * @param p2
-	 * @param p3
-	 * @param iter
+	 * @param gc - GraphicsContext to use to draw with.
+	 * @param p1 - Top left point of the triangle.
+	 * @param p2 - Bottom point of the triangle.
+	 * @param p3 - Top right point of the triangle.
+	 * @param iter - The current iteration.
 	 */
-	public void genTriangle(GraphicsContext gc, Point p1, Point p2, Point p3, int iter) {
+	private void genTriangle(GraphicsContext gc, Point p1, Point p2, Point p3, int iter) {
 
 		if (iter >= MAX_ITER) {
 			return;
 		}
 
+		//Fills a polygon representing a triangle in the graphics context.
 		double[] xpoint = { p1.getX(), p2.getX(), p3.getX() };
 		double[] ypoint = { p1.getY(), p2.getY(), p3.getY() };
 		gc.fillPolygon(xpoint, ypoint, 3);

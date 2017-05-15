@@ -24,6 +24,82 @@
 
 package me.oskarmendel.model;
 
-public class FractalModel {
+import java.util.List;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import me.oskarmendel.fractals.Fractal;
+import me.oskarmendel.fractals.JuliaFractal;
+import me.oskarmendel.fractals.PythagorasTree;
+import me.oskarmendel.fractals.SierpinskiTriangle;
+
+public class FractalModel {
+	
+	private final JuliaFractal juliaFractal = new JuliaFractal();
+	private final PythagorasTree pythagorasTree = new PythagorasTree();
+	private final SierpinskiTriangle sierpinskiTriangle = new SierpinskiTriangle();
+	
+	private final ObservableList<Fractal> fractalList = FXCollections.observableArrayList(
+			juliaFractal, pythagorasTree, sierpinskiTriangle);
+	
+	private final ObjectProperty<Fractal> activeFractal = new SimpleObjectProperty<>();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ObjectProperty<Fractal> getActiveFractal() {
+		return this.activeFractal;
+	}
+	
+	/**
+	 * 
+	 * @param fractal
+	 */
+	public void setActiveFractal(Fractal fractal) {
+		this.activeFractal.set(fractal);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ObservableList<Fractal> getFractalList() {
+		return this.fractalList;
+	}
+	
+	/**
+	 * 
+	 * @param fractals
+	 */
+	public void setFractalList(List<Fractal> fractals) {
+		this.fractalList.clear();
+		this.fractalList.addAll(fractals);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public final JuliaFractal getJuliaFractal() {
+		return this.juliaFractal;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public final PythagorasTree getPythagorasTree() {
+		return this.pythagorasTree;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public final SierpinskiTriangle getSierpinskiTriangle() {
+		return this.sierpinskiTriangle;
+	}
 }

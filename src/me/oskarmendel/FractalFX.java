@@ -25,20 +25,14 @@
 package me.oskarmendel;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import me.oskarmendel.fractals.JuliaFractal;
-import me.oskarmendel.fractals.PythagorasTree;
-import me.oskarmendel.fractals.SierpinskiTriangle;
+import me.oskarmendel.controller.FractalViewController;
+import me.oskarmendel.fractals.Fractal;
+import me.oskarmendel.model.FractalModel;
+import me.oskarmendel.view.FractalView;
 
 /**
  * Main entry point of the application.
@@ -48,9 +42,6 @@ import me.oskarmendel.fractals.SierpinskiTriangle;
  * @name FractalFX.java
  */
 public class FractalFX extends Application {
-
-	private static final int SCREEN_WIDTH = 800;
-	private static final int SCREEN_HEIGHT = 600;
 
 	private Stage mainStage;
 
@@ -64,41 +55,62 @@ public class FractalFX extends Application {
 		mainStage.setTitle("FractalFX");
 
 		BorderPane root = new BorderPane();
-		Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		//PythagorasTree pt = new PythagorasTree();
-		//pt.drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
-		SierpinskiTriangle sp = new SierpinskiTriangle();
-		sp.drawTriangle(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
-		
-//		ImageView imgView = new ImageView();
-//
-//		JuliaFractal f = new JuliaFractal();
-//		Image img = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH, SCREEN_HEIGHT, 0.285, 0.01), null);
-		
-		ScrollBar sc = new ScrollBar();
-		sc.setMin(-1);
-		sc.setMax(1);
-		
-		sc.valueProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> obs, Number old_val, Number new_val) {
-//				Image nwImg = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH, SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
-//				imgView.setImage(nwImg);
+
+		// Initiate MVC pattern for fractals.
+		FractalModel model = new FractalModel();
+		FractalViewController controller = new FractalViewController();
+		FractalView view = new FractalView(controller, model);
+
+		// Initiate the list of fractals
+		ListView<Fractal> fractalList = new ListView<Fractal>();
+		fractalList.setItems(model.getFractalList());
+
+		// Action listener for the fractal list. Double click changes the active fractal.
+		fractalList.setOnMouseClicked(e -> {
+			if (e.getClickCount() >= 2) {
+				model.setActiveFractal(fractalList.getSelectionModel().getSelectedItem());
 			}
 		});
-		
-//		imgView.setImage(img);
-//		root.setCenter(imgView);
-		root.setCenter(canvas);
-		root.setBottom(sc);
+
+		// Populate root view.
+		root.setCenter(view.getView());
+		root.setLeft(fractalList);
 
 		Scene mainScene = new Scene(root);
-
 		mainStage.setScene(mainScene);
-		mainStage.setMinWidth(SCREEN_WIDTH);
-		mainStage.setMinHeight(SCREEN_HEIGHT);
+		mainStage.setResizable(false);
 		mainStage.show();
 	}
 
 }
+// Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+// GraphicsContext gc = canvas.getGraphicsContext2D();
+// PythagorasTree pt = new PythagorasTree();
+// pt.drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+// SierpinskiTriangle sp = new SierpinskiTriangle();
+// sp.drawTriangle(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+
+// ImageView imgView = new ImageView();
+//
+// JuliaFractal f = new JuliaFractal();
+// Image img = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH,
+// SCREEN_HEIGHT, 0.285, 0.01), null);
+
+// ScrollBar sc = new ScrollBar();
+// sc.setMin(-1);
+// sc.setMax(1);
+//
+// sc.valueProperty().addListener(new ChangeListener<Number>() {
+// @Override
+// public void changed(ObservableValue<? extends Number> obs, Number old_val,
+// Number new_val) {
+//// Image nwImg = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH,
+// SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
+//// imgView.setImage(nwImg);
+// }
+// });
+
+// imgView.setImage(img);
+// root.setCenter(imgView);
+// root.setCenter(canvas);
+// root.setBottom(sc);

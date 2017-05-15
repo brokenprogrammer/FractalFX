@@ -38,7 +38,7 @@ import me.oskarmendel.util.Point;
  * @version 0.00.00
  * @name SierpinskiTriangle.java
  */
-public class SierpinskiTriangle {
+public class SierpinskiTriangle implements Fractal{
 
 	private static final int MAX_ITER = 8;
 
@@ -106,5 +106,17 @@ public class SierpinskiTriangle {
 				thirdTrianglep3.getY() + (p3.getY() - p2.getY()) / 2);
 
 		genTriangle(gc, thirdTrianglep1, thirdTrianglep2, thirdTrianglep3, (iter + 1));
+	}
+	
+	/**
+	 * Returns the string representation of this class which is the class name itself.
+	 * Because this fractal either draws to a canvas or generates an image this is the string
+	 * representation that was chosen.
+	 * 
+	 * @return the name of this class.
+	 */
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 }

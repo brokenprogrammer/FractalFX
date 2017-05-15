@@ -41,7 +41,7 @@ import me.oskarmendel.util.ComplexNumber;
  * @version 0.00.00
  * @name JuliaFractal.java
  */
-public class JuliaFractal {
+public class JuliaFractal implements Fractal{
 
 	private static final double MAX_RANGE = 1;
 	private static final double MIN_RANGE = -1;
@@ -102,5 +102,17 @@ public class JuliaFractal {
 		double im = 2 * cn.getReal() * cn.getImaginary() + imaginarySeed;
 		cn.setReal(re);
 		cn.setImaginary(im);
+	}
+	
+	/**
+	 * Returns the string representation of this class which is the class name itself.
+	 * Because this fractal either draws to a canvas or generates an image this is the string
+	 * representation that was chosen.
+	 * 
+	 * @return the name of this class.
+	 */
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 }

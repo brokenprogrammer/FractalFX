@@ -36,7 +36,7 @@ import javafx.scene.canvas.GraphicsContext;
  * @version 0.00.00
  * @name PythagorasTree.java
  */
-public class PythagorasTree {
+public class PythagorasTree implements Fractal{
 	
 	private static final int MAX_BRANCH = 14;
 	
@@ -91,5 +91,17 @@ public class PythagorasTree {
 		
 		genTree(gc, x4, y4, x5, y5, branch+1);
 		genTree(gc, x5, y5, x3, y3, branch+1);
+	}
+	
+	/**
+	 * Returns the string representation of this class which is the class name itself.
+	 * Because this fractal either draws to a canvas or generates an image this is the string
+	 * representation that was chosen.
+	 * 
+	 * @return the name of this class.
+	 */
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 }

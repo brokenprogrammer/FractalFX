@@ -47,32 +47,36 @@ public class FractalModel {
 	private final ObjectProperty<Fractal> activeFractal = new SimpleObjectProperty<>();
 	
 	/**
+	 * Gets the ObjectProperty of the currently active and viewed Fractal.
 	 * 
-	 * @return
+	 * @return currently active and viewed Fractal.
 	 */
 	public ObjectProperty<Fractal> getActiveFractal() {
 		return this.activeFractal;
 	}
 	
 	/**
+	 * Sets the currently active fractal to the specified fractal.
 	 * 
-	 * @param fractal
+	 * @param fractal - Fractal to set to active.
 	 */
 	public void setActiveFractal(Fractal fractal) {
 		this.activeFractal.set(fractal);
 	}
 	
 	/**
+	 * Get the list of fractals in the system.
 	 * 
-	 * @return
+	 * @return ObservableList of existing fractals.
 	 */
 	public ObservableList<Fractal> getFractalList() {
 		return this.fractalList;
 	}
 	
 	/**
+	 * Set the list of fractals.
 	 * 
-	 * @param fractals
+	 * @param fractals - List of fractals to populate the system with.
 	 */
 	public void setFractalList(List<Fractal> fractals) {
 		this.fractalList.clear();
@@ -80,24 +84,27 @@ public class FractalModel {
 	}
 	
 	/**
+	 * Gets the initiated JuliaFractal object.
 	 * 
-	 * @return
+	 * @return final JuliaFractal object.
 	 */
 	public final JuliaFractal getJuliaFractal() {
 		return this.juliaFractal;
 	}
 	
 	/**
+	 * Gets the initiated PythagorasTree object.
 	 * 
-	 * @return
+	 * @return final PythagorasTree object.
 	 */
 	public final PythagorasTree getPythagorasTree() {
 		return this.pythagorasTree;
 	}
 	
 	/**
+	 * Gets the initiated SierpinskiTriangle object.
 	 * 
-	 * @return
+	 * @return final SierpinskiTriangle object.
 	 */
 	public final SierpinskiTriangle getSierpinskiTriangle() {
 		return this.sierpinskiTriangle;

@@ -57,9 +57,10 @@ public class FractalView {
 	private FractalModel model;
 
 	/**
+	 * Initialze and build the FractalView for the application.
 	 * 
 	 * @param controller
-	 * @param model
+	 * @param model - Model to ask for data and changes happening to the fractal view.
 	 */
 	public FractalView(FractalViewController controller, FractalModel model) {
 		this.controller = controller;
@@ -110,8 +111,9 @@ public class FractalView {
 	}
 
 	/**
+	 * Gets the parent pane of this view.
 	 * 
-	 * @return
+	 * @return the pane with all the content for this view.
 	 */
 	public Parent getView() {
 		return view;

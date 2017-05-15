@@ -25,10 +25,13 @@
 package me.oskarmendel.view;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import me.oskarmendel.controller.FractalViewController;
 import me.oskarmendel.fractals.Fractal;
@@ -40,12 +43,18 @@ import me.oskarmendel.model.FractalModel;
 public class FractalView {
 	private static final int SCREEN_WIDTH = 800;
 	private static final int SCREEN_HEIGHT = 600;
-	
+
 	private AnchorPane view;
-	
+	private Canvas canvas;
+	private ImageView imageView;
+
+	private GraphicsContext gc;
+	private Image img;
+	private ScrollBar sc;
+
 	private FractalViewController controller;
 	private FractalModel model;
-	
+
 	/**
 	 * 
 	 * @param controller
@@ -54,29 +63,34 @@ public class FractalView {
 	public FractalView(FractalViewController controller, FractalModel model) {
 		this.controller = controller;
 		this.model = model;
-		
+
 		view = new AnchorPane();
+		view.setMinSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		
+		imageView = new ImageView();
+		canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+		gc = canvas.getGraphicsContext2D();
+
 		model.getActiveFractal().addListener((ChangeListener<Fractal>) (observable, oldValue, newValue) -> {
 			view.getChildren().clear();
-			
+
 			if (newValue.getClass() == JuliaFractal.class) {
-				System.out.println("Julia Fractal");
+				img = SwingFXUtils.toFXImage(
+						((JuliaFractal) newValue).generateFractal(SCREEN_WIDTH, SCREEN_HEIGHT, 0.285, 0.01), null);
+				imageView.setImage(img);
+				view.getChildren().add(imageView);
 			} else if (newValue.getClass() == PythagorasTree.class) {
-				System.out.println("Pythagoras Tree");
+				gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+				((PythagorasTree) newValue).drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+				view.getChildren().add(canvas);
 			} else if (newValue.getClass() == SierpinskiTriangle.class) {
-				System.out.println("Sierpinski Triangle");
+				gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+				((SierpinskiTriangle) newValue).drawTriangle(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+				view.getChildren().add(canvas);
 			}
 		});
-		
-		Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		PythagorasTree pt = new PythagorasTree();
-		pt.drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
-		view.getChildren().add(canvas);
-		
 	}
-	
+
 	/**
 	 * 
 	 * @return

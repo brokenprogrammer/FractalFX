@@ -47,7 +47,7 @@ public class PythagorasTree implements Fractal{
 	 * @param height - height of the container or canvas.
 	 * @param gc - GraphicsContext to use to draw with.
 	 */
-	public void drawTree(int width, int height,GraphicsContext gc) {
+	public void drawTree(int width, int height, GraphicsContext gc) {
 		genTree(gc, (width/2)-50, height, ((width/2)-50)+100, height, 0);
 	}
 	

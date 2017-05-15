@@ -81,36 +81,4 @@ public class FractalFX extends Application {
 		mainStage.setResizable(false);
 		mainStage.show();
 	}
-
 }
-// Canvas canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
-// GraphicsContext gc = canvas.getGraphicsContext2D();
-// PythagorasTree pt = new PythagorasTree();
-// pt.drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
-// SierpinskiTriangle sp = new SierpinskiTriangle();
-// sp.drawTriangle(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
-
-// ImageView imgView = new ImageView();
-//
-// JuliaFractal f = new JuliaFractal();
-// Image img = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH,
-// SCREEN_HEIGHT, 0.285, 0.01), null);
-
-// ScrollBar sc = new ScrollBar();
-// sc.setMin(-1);
-// sc.setMax(1);
-//
-// sc.valueProperty().addListener(new ChangeListener<Number>() {
-// @Override
-// public void changed(ObservableValue<? extends Number> obs, Number old_val,
-// Number new_val) {
-//// Image nwImg = SwingFXUtils.toFXImage(f.generateFractal(SCREEN_WIDTH,
-// SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
-//// imgView.setImage(nwImg);
-// }
-// });
-
-// imgView.setImage(img);
-// root.setCenter(imgView);
-// root.setCenter(canvas);
-// root.setBottom(sc);

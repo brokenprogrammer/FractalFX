@@ -25,6 +25,7 @@
 package me.oskarmendel.view;
 
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
@@ -68,9 +69,11 @@ public class FractalView {
 		view.setMinSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		
 		imageView = new ImageView();
+		sc = new ScrollBar();
 		canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
 		gc = canvas.getGraphicsContext2D();
 
+		// Listener for changes in the active fractal
 		model.getActiveFractal().addListener((ChangeListener<Fractal>) (observable, oldValue, newValue) -> {
 			view.getChildren().clear();
 
@@ -78,7 +81,22 @@ public class FractalView {
 				img = SwingFXUtils.toFXImage(
 						((JuliaFractal) newValue).generateFractal(SCREEN_WIDTH, SCREEN_HEIGHT, 0.285, 0.01), null);
 				imageView.setImage(img);
+				sc.setMin(-1);
+				sc.setMax(1);
+				
+				sc.valueProperty().addListener(new ChangeListener<Number>() {
+					 @Override
+					 public void changed(ObservableValue<? extends Number> obs, Number old_val,
+					 Number new_val) {
+					 img = SwingFXUtils.toFXImage(((JuliaFractal) newValue).generateFractal(SCREEN_WIDTH,
+					 SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
+					 imageView.setImage(img);
+					 }
+					 });
+				
 				view.getChildren().add(imageView);
+				view.getChildren().add(sc);
+				
 			} else if (newValue.getClass() == PythagorasTree.class) {
 				gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 				((PythagorasTree) newValue).drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);

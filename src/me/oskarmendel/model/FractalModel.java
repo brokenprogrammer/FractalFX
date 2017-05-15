@@ -35,6 +35,14 @@ import me.oskarmendel.fractals.JuliaFractal;
 import me.oskarmendel.fractals.PythagorasTree;
 import me.oskarmendel.fractals.SierpinskiTriangle;
 
+/**
+ * The model for the Fractal view handles the data regarding what fractals 
+ * that are available and which fractal that should currently be displayed.
+ * 
+ * @author Oskar Mendel
+ * @version 0.00.00
+ * @name FractalModel.java
+ */
 public class FractalModel {
 	
 	private final JuliaFractal juliaFractal = new JuliaFractal();

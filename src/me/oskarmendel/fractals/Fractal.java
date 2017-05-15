@@ -24,6 +24,13 @@
 
 package me.oskarmendel.fractals;
 
+/**
+ * 
+ * 
+ * @author Oskar Mendel
+ * @version 0.00.00
+ * @name Fractal.java
+ */
 public interface Fractal {
 
 }

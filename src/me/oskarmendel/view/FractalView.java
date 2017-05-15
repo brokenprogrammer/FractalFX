@@ -41,6 +41,13 @@ import me.oskarmendel.fractals.PythagorasTree;
 import me.oskarmendel.fractals.SierpinskiTriangle;
 import me.oskarmendel.model.FractalModel;
 
+/**
+ * View of the Fractal window, constructs and handles the UI for the displaying of fractals.
+ * 
+ * @author Oskar Mendel
+ * @version 0.00.00
+ * @name FractalView.java
+ */
 public class FractalView {
 	private static final int SCREEN_WIDTH = 800;
 	private static final int SCREEN_HEIGHT = 600;

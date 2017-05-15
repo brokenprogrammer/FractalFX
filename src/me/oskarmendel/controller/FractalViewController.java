@@ -24,6 +24,13 @@
 
 package me.oskarmendel.controller;
 
+/**
+ * 
+ * 
+ * @author Oskar Mendel
+ * @version 0.00.00
+ * @name FractalViewController.java
+ */
 public class FractalViewController {
 
 }

@@ -42,7 +42,8 @@ import me.oskarmendel.fractals.SierpinskiTriangle;
 import me.oskarmendel.model.FractalModel;
 
 /**
- * View of the Fractal window, constructs and handles the UI for the displaying of fractals.
+ * View of the Fractal window, constructs and handles the UI for the displaying
+ * of fractals.
  * 
  * @author Oskar Mendel
  * @version 0.00.00
@@ -67,7 +68,9 @@ public class FractalView {
 	 * Initialze and build the FractalView for the application.
 	 * 
 	 * @param controller
-	 * @param model - Model to ask for data and changes happening to the fractal view.
+	 * @param model
+	 *            - Model to ask for data and changes happening to the fractal
+	 *            view.
 	 */
 	public FractalView(FractalViewController controller, FractalModel model) {
 		this.controller = controller;
@@ -75,7 +78,7 @@ public class FractalView {
 
 		view = new AnchorPane();
 		view.setMinSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		
+
 		imageView = new ImageView();
 		sc = new ScrollBar();
 		canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -91,24 +94,36 @@ public class FractalView {
 				imageView.setImage(img);
 				sc.setMin(-1);
 				sc.setMax(1);
-				
+
 				sc.valueProperty().addListener(new ChangeListener<Number>() {
-					 @Override
-					 public void changed(ObservableValue<? extends Number> obs, Number old_val,
-					 Number new_val) {
-					 img = SwingFXUtils.toFXImage(((JuliaFractal) newValue).generateFractal(SCREEN_WIDTH,
-					 SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
-					 imageView.setImage(img);
-					 }
-					 });
-				
+					@Override
+					public void changed(ObservableValue<? extends Number> obs, Number old_val, Number new_val) {
+						img = SwingFXUtils.toFXImage(((JuliaFractal) newValue).generateFractal(SCREEN_WIDTH,
+								SCREEN_HEIGHT, new_val.doubleValue(), 0.27015), null);
+						imageView.setImage(img);
+					}
+				});
+
 				view.getChildren().add(imageView);
 				view.getChildren().add(sc);
-				
+
 			} else if (newValue.getClass() == PythagorasTree.class) {
 				gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-				((PythagorasTree) newValue).drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, gc);
+				((PythagorasTree) newValue).drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, 0.5, gc);
+				
+				sc.setMin(-1);
+				sc.setMax(1);
+
+				sc.valueProperty().addListener(new ChangeListener<Number>() {
+					@Override
+					public void changed(ObservableValue<? extends Number> obs, Number old_val, Number new_val) {
+						gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+						((PythagorasTree) newValue).drawTree(SCREEN_WIDTH, SCREEN_HEIGHT, new_val.doubleValue(), gc);
+					}
+				});
+				
 				view.getChildren().add(canvas);
+				view.getChildren().add(sc);
 			} else if (newValue.getClass() == SierpinskiTriangle.class) {
 				gc.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 				((SierpinskiTriangle) newValue).drawTriangle(SCREEN_WIDTH, SCREEN_HEIGHT, gc);

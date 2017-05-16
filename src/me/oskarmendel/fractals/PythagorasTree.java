@@ -40,6 +40,8 @@ public class PythagorasTree implements Fractal{
 	
 	private static final int MAX_BRANCH = 14;
 	
+	private double angle = 0.5F;
+	
 	/**
 	 * Draws Pythagoras tree to the specified GraphicsContext.
 	 * 
@@ -47,7 +49,8 @@ public class PythagorasTree implements Fractal{
 	 * @param height - height of the container or canvas.
 	 * @param gc - GraphicsContext to use to draw with.
 	 */
-	public void drawTree(int width, int height, GraphicsContext gc) {
+	public void drawTree(int width, int height, double angle, GraphicsContext gc) {
+		this.angle = angle;
 		genTree(gc, (width/2)-50, height, ((width/2)-50)+100, height, 0);
 	}
 	
@@ -75,8 +78,8 @@ public class PythagorasTree implements Fractal{
 		double y3 = y2 - dx;
 		double x4 = x1 - dy;
 		double y4 = y1 - dx;
-		double x5 = x4 + 0.5F * (dx - dy);
-		double y5 = y4 - 0.5F * (dx + dy);
+		double x5 = x4 + angle * (dx - dy);
+		double y5 = y4 - angle * (dx + dy);
 		
 		//Draw square
 		gc.strokeLine(x1, y1, x2, y2);

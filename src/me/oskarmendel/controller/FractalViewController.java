@@ -32,5 +32,5 @@ package me.oskarmendel.controller;
  * @name FractalViewController.java
  */
 public class FractalViewController {
-
+	
 }

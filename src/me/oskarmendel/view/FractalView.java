@@ -83,7 +83,7 @@ public class FractalView {
 		sc = new ScrollBar();
 		canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
 		gc = canvas.getGraphicsContext2D();
-
+		
 		// Listener for changes in the active fractal
 		model.getActiveFractal().addListener((ChangeListener<Fractal>) (observable, oldValue, newValue) -> {
 			view.getChildren().clear();

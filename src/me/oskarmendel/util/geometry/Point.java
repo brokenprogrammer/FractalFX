@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package me.oskarmendel.util;
+package me.oskarmendel.util.geometry;
 
 /**
  * Point is a class that represents a point in a 2d plane.

@@ -25,7 +25,7 @@
 package me.oskarmendel.fractals;
 
 import javafx.scene.canvas.GraphicsContext;
-import me.oskarmendel.util.Point;
+import me.oskarmendel.util.geometry.Point;
 
 /**
  * The Sierpinski triangle is a fractal constructed from recursively subdivide a

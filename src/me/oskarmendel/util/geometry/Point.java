@@ -60,6 +60,18 @@ public class Point {
 	}
 	
 	/**
+	 * Rotate this point by the specified angle.
+	 * 
+	 * @param angle - Angle to rotate this point by.
+	 */
+	public void rotate(double angle) {
+		double tempX = this.x;
+		double tempY = this.y;
+		this.x = tempX * Math.cos(angle) - tempY * Math.sin(angle);
+		this.y = tempX * Math.sin(angle) + tempY * Math.cos(angle);
+	}
+	
+	/**
 	 * Getter for the x coordinate of this point.
 	 * 
 	 * @return x coordinate of this point.

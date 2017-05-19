@@ -29,8 +29,7 @@ import java.awt.Graphics2D;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Shape interface to act as a starting point for all objects that represent
- * some form of geometric shape.
+ * Rectangle represents the geometric shape of a Rectangle.
  * 
  * @author Oskar Mendel
  * @version 0.00.00

@@ -92,7 +92,7 @@ public class Rectangle implements Shape {
 	 */
 	@Override
 	public double getArea() {
-		return 0;
+		return (width*height);
 	}
 
 	/**
@@ -103,6 +103,11 @@ public class Rectangle implements Shape {
 	 */
 	@Override
 	public boolean contains(Point p) {
+		if ((p.getX() >= this.x) && (p.getX() <= (this.x + width))) {
+			if ((p.getY() >= this.y) && (p.getY() <= (this.y + height))) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -116,7 +121,11 @@ public class Rectangle implements Shape {
 	 */
 	@Override
 	public boolean contains(double x, double y) {
-		// TODO Auto-generated method stub
+		if ((x >= this.x) && (x <= (this.x + width))) {
+			if ((y >= this.y) && (y <= (this.y + height))) {
+				return true;
+			}
+		}
 		return false;
 	}
 

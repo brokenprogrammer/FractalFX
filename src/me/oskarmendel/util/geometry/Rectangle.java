@@ -215,7 +215,30 @@ public class Rectangle implements Shape {
 	 */
 	@Override
 	public void drawFill(GraphicsContext gc) {
+		if (this.angle == 0.0) {
+			gc.fillRect(x, y, x + width, y + height);
+		} else {
+			// Set the points for all corners while translating the coordinates
+			// the origin.
+			Point topLeft = new Point(x - center.getX(), (y - center.getY()));
+			Point topRight = new Point((x + width) - center.getX(), y - center.getY());
+			Point bottomLeft = new Point(x - center.getX(), y + height - center.getY());
+			Point bottomRight = new Point(x + width - center.getX(), x + width - center.getY());
 
+			// Apply rotation to all the points.
+			topLeft.rotate(angle);
+			topRight.rotate(angle);
+			bottomLeft.rotate(angle);
+			bottomRight.rotate(angle);
+			
+			double [] xPoints = {(topLeft.getX() + center.getX()), (topRight.getX() + center.getX()), 
+					(bottomRight.getX() + center.getX()), (bottomLeft.getX() + center.getX())};
+			
+			double [] yPoints = {(topLeft.getY() + center.getY()), (topRight.getY() + center.getY()), 
+					(bottomRight.getY() + center.getY()), (bottomLeft.getY() + center.getY())};
+			
+			gc.fillPolygon(xPoints, yPoints, 4);
+		}
 	}
 
 	/**
@@ -226,7 +249,30 @@ public class Rectangle implements Shape {
 	 */
 	@Override
 	public void drawFill(Graphics2D g) {
+		if (this.angle == 0.0) {
+			g.fillRect((int) x, (int) y, (int) (x + width), (int) (y + height));
+		} else {
+			// Set the points for all corners while translating the coordinates
+			// the origin.
+			Point topLeft = new Point(x - center.getX(), (y - center.getY()));
+			Point topRight = new Point((x + width) - center.getX(), y - center.getY());
+			Point bottomLeft = new Point(x - center.getX(), y + height - center.getY());
+			Point bottomRight = new Point(x + width - center.getX(), x + width - center.getY());
 
+			// Apply rotation to all the points.
+			topLeft.rotate(angle);
+			topRight.rotate(angle);
+			bottomLeft.rotate(angle);
+			bottomRight.rotate(angle);
+			
+			int [] xPoints = {(int) (topLeft.getX() + center.getX()), (int) (topRight.getX() + center.getX()), 
+					(int) (bottomRight.getX() + center.getX()), (int) (bottomLeft.getX() + center.getX())};
+			
+			int [] yPoints = {(int) (topLeft.getY() + center.getY()), (int) (topRight.getY() + center.getY()), 
+					(int) (bottomRight.getY() + center.getY()), (int) (bottomLeft.getY() + center.getY())};
+			
+			g.fillPolygon(xPoints, yPoints, 4);
+		}
 	}
 
 }

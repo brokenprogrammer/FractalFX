@@ -37,47 +37,130 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Triangle implements Shape {
 
-	private double x;
-	private double y;
+	private Point p1;
+	private Point p2;
+	private Point p3;
 	
+	private Point center;
+	private double angle;
 	
+	/**
+	 * Constructs a new Triangle using the specified three points.
+	 * 
+	 * @param p1
+	 * @param p2
+	 * @param p3
+	 */
+	public Triangle(Point p1, Point p2, Point p3) {
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+		
+		// Setting the center to the barycenter of this Triangle.
+		this.center = new Point((p1.getX() + p2.getX() + p3.getX()) / 3,
+				(p1.getY() + p2.getY() + p3.getY()) / 3);
+	}
 	
+	/**
+	 * Constructs a new Triangle using the specified three points. Also
+	 * rotates the Triangle using the specified angle which is counted in degrees.
+	 * 
+	 * @param p1
+	 * @param p2
+	 * @param p3
+	 * @param a - The angle to rotate the Triangle by in degrees.
+	 */
+	public Triangle(Point p1, Point p2, Point p3, double a) {
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+		
+		// Setting the center to the barycenter of this Triangle.
+		this.center = new Point((p1.getX() + p2.getX() + p3.getX()) / 3,
+				(p1.getY() + p2.getY() + p3.getY()) / 3);
+		
+		this.angle = (a * Math.PI) / 180;
+	}
+	
+	/**
+	 * Computes the area for this Triangle.
+	 * 
+	 * @return Area of this Triangle.
+	 */
 	@Override
 	public double getArea() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ((p1.getX() - p3.getX()) * (p2.getY() - p1.getY()) -
+				(p1.getX() - p2.getX()) * (p3.getY() - p1.getY())) * 0.5;
 	}
 
+	/**
+	 * Checks whether this Triangle contains specified point.
+	 * 
+	 * @param p - Point to check.
+	 * @return True if the point is inside this Triangle.
+	 */
 	@Override
 	public boolean contains(Point p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Checks whether this Triangle contains the point at specified location x
+	 * and y.
+	 * 
+	 * @param x - The specified x coordinate.
+	 * @param y - The specified y coordinate.
+	 * @return True if the point (x,y) is inside this Triangle.
+	 */
 	@Override
 	public boolean contains(double x, double y) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Draws the outline of this Triangle. The Triangle is drawn using the
+	 * GraphicsContext's current color.
+	 * 
+	 * @param gc - GraphicsContext object to use for drawing.
+	 */
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Draws the outline of this Triangle. The Triangle is drawn using the
+	 * Graphics2D's current color.
+	 * 
+	 * @param g - Graphics2D object to use for drawing.
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Draws a filled Triangle. The Triangle is drawn using the
+	 * GraphicsContext's current color.
+	 * 
+	 * @param gc - GraphicsContext object to use for drawing.
+	 */
 	@Override
 	public void drawFill(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Draws a filled Triangle. The Triangle is drawn using the Graphics2D's
+	 * current color.
+	 * 
+	 * @param g  - Graphics2D object to use for drawing.
+	 */
 	@Override
 	public void drawFill(Graphics2D g) {
 		// TODO Auto-generated method stub

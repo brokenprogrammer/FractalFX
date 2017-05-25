@@ -127,8 +127,30 @@ public class Triangle implements Shape {
 	 */
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
+		if (this.angle == 0.0) {
+			gc.strokeLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+			gc.strokeLine(p2.getX(), p2.getY(), p3.getX(), p3.getY());
+			gc.strokeLine(p3.getX(), p3.getY(), p1.getX(), p1.getY());
+		} else {
+			// Set the points for all corners while translating the coordinates
+			// the origin.
+			Point d1 = new Point(p1.getX() - center.getX(), p1.getX() - center.getY());
+			Point d2 = new Point(p2.getX() - center.getX(), p2.getY() - center.getY());
+			Point d3 = new Point(p3.getX() - center.getX(), p3.getY() - center.getY());
+			
+			// Apply rotation to all the points.
+			d1.rotate(angle);
+			d2.rotate(angle);
+			d3.rotate(angle);
+			
+			// Translate the points back while drawing lines between the points.
+			gc.strokeLine(d1.getX() + center.getX(), d1.getY() + center.getY(), 
+					d2.getX() + center.getX(), d2.getY() + center.getY());
+			gc.strokeLine(d2.getX() + center.getX(), d2.getY() + center.getY(), 
+					d3.getX() + center.getX(), d3.getY() + center.getY());
+			gc.strokeLine(d3.getX() + center.getX(), d3.getY() + center.getY(), 
+					d1.getX() + center.getX(), d1.getY() + center.getY());
+		}
 	}
 
 	/**
@@ -139,8 +161,30 @@ public class Triangle implements Shape {
 	 */
 	@Override
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
+		if (this.angle == 0.0) {
+			g.drawLine((int) p1.getX(), (int) p1.getY(), (int) p2.getX(), (int) p2.getY());
+			g.drawLine((int) p2.getX(), (int) p2.getY(), (int) p3.getX(), (int) p3.getY());
+			g.drawLine((int) p3.getX(), (int) p3.getY(), (int) p1.getX(), (int) p1.getY());
+		} else {
+			// Set the points for all corners while translating the coordinates
+			// the origin.
+			Point d1 = new Point(p1.getX() - center.getX(), p1.getX() - center.getY());
+			Point d2 = new Point(p2.getX() - center.getX(), p2.getY() - center.getY());
+			Point d3 = new Point(p3.getX() - center.getX(), p3.getY() - center.getY());
+			
+			// Apply rotation to all the points.
+			d1.rotate(angle);
+			d2.rotate(angle);
+			d3.rotate(angle);
+			
+			// Translate the points back while drawing lines between the points.
+			g.drawLine((int) (d1.getX() + center.getX()), (int) (d1.getY() + center.getY()), 
+					(int) (d2.getX() + center.getX()), (int) (d2.getY() + center.getY()));
+			g.drawLine((int)(d2.getX() + center.getX()), (int) (d2.getY() + center.getY()), 
+					(int) (d3.getX() + center.getX()), (int) (d3.getY() + center.getY()));
+			g.drawLine((int) (d3.getX() + center.getX()), (int) (d3.getY() + center.getY()), 
+					(int) (d1.getX() + center.getX()), (int) (d1.getY() + center.getY()));
+		}
 	}
 
 	/**
